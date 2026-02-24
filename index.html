@@ -32,7 +32,7 @@
     const { useState, useEffect } = React;
 
     // --- [SVG Icon Component (Lucide 대체용)] ---
-    const Icon = ({ name, size = 24, className = "", onClick }) => {
+    const Icon = ({ name, size = 24, className = "", onClick, style }) => {
       const paths = {
         LayoutDashboard: <><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></>,
         CalendarCheck: <><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><path d="m9 16 2 2 4-4"/></>,
@@ -52,10 +52,11 @@
         ChevronLeft: <><path d="m15 18-6-6 6-6"/></>,
         ChevronRight: <><path d="m9 18 6-6-6-6"/></>,
         Edit2: <><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></>,
+        Trash2: <><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></>,
         Menu: <><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></>
       };
       return (
-        <svg onClick={onClick} xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+        <svg onClick={onClick} style={style} xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
           {paths[name]}
         </svg>
       );
@@ -72,12 +73,12 @@
     };
 
     const INITIAL_RESERVATIONS = [
-      { id: 'REV-001', customer: '김철수', phone: '010-1234-5678', largeCat: '스튜디오', mediumCat: '빛나는스튜디오', item: 'A룸 4시간 대관', date: '2026-02-24', status: '대기', amount: 250000 },
-      { id: 'REV-002', customer: '이영희', phone: '010-9876-5432', largeCat: '포토그래퍼', mediumCat: '김사진 작가', item: '야외 스냅 촬영', date: '2026-02-25', status: '확정', amount: 600000 },
-      { id: 'REV-003', customer: '박지민', phone: '010-1111-2222', largeCat: '뷰티샵', mediumCat: '살롱드뷰티', item: '웨딩 헤어/메이크업', date: '2026-02-24', status: '진행', amount: 350000 },
-      { id: 'REV-004', customer: '최동훈', phone: '010-3333-4444', largeCat: '브랜드사', mediumCat: '웨딩컴퍼니', item: 'B2B 제휴 상품 촬영', date: '2026-02-23', status: '완료', amount: 1200000 },
-      { id: 'REV-005', customer: '정수아', phone: '010-5555-6666', largeCat: '스튜디오', mediumCat: '모던픽쳐스', item: '자연광 C룸 렌탈', date: '2026-02-28', status: '취소', amount: 150000 },
-      { id: 'REV-006', customer: '강다니엘', phone: '010-7777-8888', largeCat: '포토그래퍼', mediumCat: '이포토 작가', item: '프로필 촬영', date: '2026-03-01', status: '대기', amount: 200000 },
+      { id: '2026-000001', customer: '김철수', phone: '010-1234-5678', largeCat: '스튜디오', mediumCat: '빛나는스튜디오', item: 'A룸 4시간 대관', date: '2026-02-24', status: '대기', amount: 250000 },
+      { id: '2026-000002', customer: '이영희', phone: '010-9876-5432', largeCat: '포토그래퍼', mediumCat: '김사진 작가', item: '야외 스냅 촬영', date: '2026-02-25', status: '확정', amount: 600000 },
+      { id: '2026-000003', customer: '박지민', phone: '010-1111-2222', largeCat: '뷰티샵', mediumCat: '살롱드뷰티', item: '웨딩 헤어/메이크업', date: '2026-02-24', status: '진행', amount: 350000 },
+      { id: '2026-000004', customer: '최동훈', phone: '010-3333-4444', largeCat: '브랜드사', mediumCat: '웨딩컴퍼니', item: 'B2B 제휴 상품 촬영', date: '2026-02-23', status: '완료', amount: 1200000 },
+      { id: '2026-000005', customer: '정수아', phone: '010-5555-6666', largeCat: '스튜디오', mediumCat: '모던픽쳐스', item: '자연광 C룸 렌탈', date: '2026-02-28', status: '취소', amount: 150000 },
+      { id: '2026-000006', customer: '강다니엘', phone: '010-7777-8888', largeCat: '포토그래퍼', mediumCat: '이포토 작가', item: '프로필 촬영', date: '2026-03-01', status: '대기', amount: 200000 },
     ];
 
     const INITIAL_PARTNERS = [
@@ -101,21 +102,45 @@
       const [partners, setPartners] = useState(INITIAL_PARTNERS);
       const [categoryMap, setCategoryMap] = useState(CATEGORY_MAP);
 
+      // 대시보드 통계 카드 색상 상태 관리
+      const [statColors, setStatColors] = useState({
+        pending: '#eab308',   // yellow-500
+        confirmed: '#3b82f6', // blue-500
+        completed: '#22c55e', // green-500
+        revenue: '#a855f7'    // purple-500
+      });
+
       // Search, Modal & Sidebar State
       const [searchQuery, setSearchQuery] = useState('');
       const [isSearchOpen, setIsSearchOpen] = useState(false);
-      const [globalSelectedRes, setGlobalSelectedRes] = useState(null);
+      
+      const [globalSelectedDate, setGlobalSelectedDate] = useState(null); // 날짜 클릭 시 일정 리스트 모달
+      const [globalSelectedRes, setGlobalSelectedRes] = useState(null);   // 단일 일정 상세 모달
+      const [globalIsEditMode, setGlobalIsEditMode] = useState(false);    // 상세 모달 내 수정 모드 상태
+      const [globalEditForm, setGlobalEditForm] = useState(null);         // 상세 모달 수정 폼 데이터
+      
       const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
+      // 검색어 공백 제거 및 소문자 변환 후 통합 검색
+      const searchLower = searchQuery.trim().toLowerCase();
       const searchResults = reservations.filter(res =>
-        res.customer.includes(searchQuery) ||
-        res.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        res.phone.includes(searchQuery)
+        res.customer.toLowerCase().includes(searchLower) ||
+        res.phone.includes(searchLower) ||
+        res.id.toLowerCase().includes(searchLower) ||
+        res.largeCat.toLowerCase().includes(searchLower) ||
+        res.mediumCat.toLowerCase().includes(searchLower) ||
+        res.item.toLowerCase().includes(searchLower)
       );
 
       const handleTabChange = (tab) => {
         setActiveTab(tab);
         setIsSidebarOpen(false); // 모바일에서 탭 이동 시 사이드바 닫기
+      };
+
+      const closeGlobalResModal = () => {
+        setGlobalSelectedRes(null);
+        setGlobalIsEditMode(false);
+        setGlobalEditForm(null);
       };
 
       return (
@@ -178,6 +203,7 @@
                   {activeTab === 'dashboard' && '통합 대시보드'}
                   {activeTab === 'reservations' && '예약 상태 관리'}
                   {activeTab === 'partners' && '파트너/카테고리'}
+                  {activeTab === 'settings' && '시스템 설정'}
                 </h2>
               </div>
 
@@ -193,8 +219,8 @@
                     }}
                     onFocus={() => setIsSearchOpen(true)}
                     onBlur={() => setTimeout(() => setIsSearchOpen(false), 200)} 
-                    placeholder="검색..." 
-                    className="pl-9 pr-3 py-1.5 md:py-2 bg-slate-100 border-transparent rounded-lg text-xs md:text-sm focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all w-28 sm:w-48 md:w-64"
+                    placeholder="고객명, 예약번호, 카테고리, 상품명 검색..." 
+                    className="pl-9 pr-3 py-1.5 md:py-2 bg-slate-100 border-transparent rounded-lg text-xs md:text-sm focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all w-36 sm:w-64 md:w-80"
                   />
                   
                   {/* Search Dropdown */}
@@ -210,6 +236,7 @@
                               key={res.id}
                               onClick={() => {
                                 setGlobalSelectedRes(res);
+                                setGlobalIsEditMode(false);
                                 setIsSearchOpen(false);
                                 setSearchQuery('');
                               }}
@@ -241,69 +268,190 @@
 
             {/* Scrollable Content Area */}
             <div className="flex-1 overflow-y-auto p-4 md:p-8">
-              {activeTab === 'dashboard' && <DashboardView reservations={reservations} onSelectReservation={setGlobalSelectedRes} />}
-              {activeTab === 'reservations' && <ReservationsView reservations={reservations} setReservations={setReservations} />}
+              {activeTab === 'dashboard' && <DashboardView reservations={reservations} onSelectReservation={setGlobalSelectedRes} onSelectDate={setGlobalSelectedDate} statColors={statColors} />}
+              {activeTab === 'reservations' && <ReservationsView reservations={reservations} setReservations={setReservations} categoryMap={categoryMap} />}
               {activeTab === 'partners' && <PartnersView partners={partners} setPartners={setPartners} categoryMap={categoryMap} setCategoryMap={setCategoryMap} />}
+              {activeTab === 'settings' && <SettingsView statColors={statColors} setStatColors={setStatColors} />}
             </div>
           </main>
 
-          {/* Global Reservation Detail Modal */}
-          {globalSelectedRes && (
+          {/* Global Date Summary Modal (해당 날짜 전체 일정 리스트) */}
+          {globalSelectedDate && (
             <div className="fixed inset-0 bg-slate-900/50 flex items-center justify-center z-[60] p-4">
+              <div className="bg-white rounded-xl shadow-xl w-full max-w-md max-h-[90dvh] flex flex-col animate-in fade-in zoom-in duration-200">
+                <div className="px-5 py-4 border-b border-slate-100 flex justify-between items-center bg-slate-50 rounded-t-xl shrink-0">
+                  <div>
+                    <h3 className="font-bold text-lg">{globalSelectedDate.date} 예약 일정</h3>
+                    <p className="text-xs text-slate-500 mt-1">총 {reservations.filter(r => r.date === globalSelectedDate.date).length}건의 예약이 있습니다.</p>
+                  </div>
+                  <button onClick={() => setGlobalSelectedDate(null)} className="text-slate-400 hover:text-slate-700">
+                    <Icon name="XCircle" size={24} />
+                  </button>
+                </div>
+                
+                <div className="p-4 overflow-y-auto flex-1 bg-slate-50/50">
+                  <div className="space-y-3">
+                    {reservations.filter(r => r.date === globalSelectedDate.date).map(res => (
+                      <div 
+                        key={res.id}
+                        onClick={() => {
+                          setGlobalSelectedRes(res);
+                          setGlobalIsEditMode(false);
+                        }} 
+                        className="bg-white border border-slate-200 rounded-lg p-3 shadow-sm hover:border-blue-400 hover:shadow-md cursor-pointer transition-all"
+                      >
+                        <div className="flex justify-between items-start mb-2">
+                          <div>
+                            <span className="font-bold text-slate-800 text-sm">{res.customer}</span>
+                            <span className="text-xs text-slate-500 ml-1">({res.phone})</span>
+                          </div>
+                          <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold border ${STATUS_COLORS[res.status]}`}>{res.status}</span>
+                        </div>
+                        <div className="text-xs text-slate-500 mb-1">{res.largeCat} &gt; {res.mediumCat}</div>
+                        <div className="text-sm font-medium text-slate-800 truncate">{res.item}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                
+                <div className="px-5 py-3 border-t border-slate-100 bg-white rounded-b-xl shrink-0 flex justify-end">
+                  <button 
+                    onClick={() => setGlobalSelectedDate(null)} 
+                    className="px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-lg transition-colors"
+                  >
+                    닫기
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Global Reservation Detail Modal (단일 일정 상세 보기) */}
+          {globalSelectedRes && (
+            <div className="fixed inset-0 bg-slate-900/50 flex items-center justify-center z-[70] p-4">
               <div className="bg-white rounded-xl shadow-xl w-full max-w-md max-h-[90dvh] overflow-y-auto animate-in fade-in zoom-in duration-200">
                 <div className="sticky top-0 px-5 py-4 border-b border-slate-100 flex justify-between items-center bg-slate-50 z-10">
-                  <h3 className="font-bold text-lg">예약 상세 정보</h3>
-                  <button onClick={() => setGlobalSelectedRes(null)} className="text-slate-400 hover:text-slate-700">
+                  <h3 className="font-bold text-lg">{globalIsEditMode ? '예약 내역 수정' : '예약 상세 정보'}</h3>
+                  <button onClick={closeGlobalResModal} className="text-slate-400 hover:text-slate-700">
                     <Icon name="XCircle" size={24} />
                   </button>
                 </div>
                 
                 <div className="p-5 space-y-4">
-                  <div className="flex justify-between items-center border-b border-slate-100 pb-4">
-                    <div>
-                      <p className="text-xs md:text-sm text-slate-500">예약번호</p>
-                      <p className="font-semibold text-slate-800">{globalSelectedRes.id}</p>
+                  {globalIsEditMode ? (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="sm:col-span-2 flex justify-between items-center border-b border-slate-100 pb-2 mb-2">
+                        <span className="text-xs md:text-sm font-medium text-slate-500">예약번호: {globalEditForm.id}</span>
+                      </div>
+                      <div>
+                        <label className="block text-xs md:text-sm font-medium text-slate-700 mb-1">고객명</label>
+                        <input type="text" value={globalEditForm.customer} onChange={(e) => setGlobalEditForm({...globalEditForm, customer: e.target.value})} className="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs md:text-sm focus:ring-2 focus:ring-blue-500 outline-none" />
+                      </div>
+                      <div>
+                        <label className="block text-xs md:text-sm font-medium text-slate-700 mb-1">연락처</label>
+                        <input type="text" value={globalEditForm.phone} onChange={(e) => setGlobalEditForm({...globalEditForm, phone: e.target.value})} className="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs md:text-sm focus:ring-2 focus:ring-blue-500 outline-none" />
+                      </div>
+                      <div>
+                        <label className="block text-xs md:text-sm font-medium text-slate-700 mb-1">대카테고리</label>
+                        <select value={globalEditForm.largeCat} onChange={(e) => { const newCat = e.target.value; setGlobalEditForm({...globalEditForm, largeCat: newCat, mediumCat: categoryMap[newCat][0] || ''}); }} className="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs md:text-sm outline-none focus:ring-2 focus:ring-blue-500">
+                          {LARGE_CATEGORIES.map(cat => <option key={cat} value={cat}>{cat}</option>)}
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-xs md:text-sm font-medium text-slate-700 mb-1">담당자 (중분류)</label>
+                        <select value={globalEditForm.mediumCat} onChange={(e) => setGlobalEditForm({...globalEditForm, mediumCat: e.target.value})} className="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs md:text-sm outline-none focus:ring-2 focus:ring-blue-500">
+                          {(categoryMap[globalEditForm.largeCat] || []).map(cat => <option key={cat} value={cat}>{cat}</option>)}
+                        </select>
+                      </div>
+                      <div className="sm:col-span-2">
+                        <label className="block text-xs md:text-sm font-medium text-slate-700 mb-1">예약상품</label>
+                        <input type="text" value={globalEditForm.item} onChange={(e) => setGlobalEditForm({...globalEditForm, item: e.target.value})} className="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs md:text-sm focus:ring-2 focus:ring-blue-500 outline-none" />
+                      </div>
+                      <div>
+                        <label className="block text-xs md:text-sm font-medium text-slate-700 mb-1">예약일자</label>
+                        <input type="date" value={globalEditForm.date} onChange={(e) => setGlobalEditForm({...globalEditForm, date: e.target.value})} className="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs md:text-sm focus:ring-2 focus:ring-blue-500 outline-none" />
+                      </div>
+                      <div>
+                        <label className="block text-xs md:text-sm font-medium text-slate-700 mb-1">결제금액 (₩)</label>
+                        <input type="number" value={globalEditForm.amount} onChange={(e) => setGlobalEditForm({...globalEditForm, amount: parseInt(e.target.value) || 0})} className="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs md:text-sm focus:ring-2 focus:ring-blue-500 outline-none" />
+                      </div>
+                      <div className="sm:col-span-2">
+                        <label className="block text-xs md:text-sm font-medium text-slate-700 mb-1">예약 상태</label>
+                        <select value={globalEditForm.status} onChange={(e) => setGlobalEditForm({...globalEditForm, status: e.target.value})} className={`w-full border rounded-lg px-3 py-2 text-xs md:text-sm font-medium outline-none focus:ring-2 focus:ring-blue-500 ${STATUS_COLORS[globalEditForm.status]}`}>
+                          <option value="대기">대기</option>
+                          <option value="확정">확정</option>
+                          <option value="진행">진행</option>
+                          <option value="완료">완료</option>
+                          <option value="취소">취소</option>
+                        </select>
+                      </div>
                     </div>
-                    <span className={`px-3 py-1 rounded-full text-xs font-bold border ${STATUS_COLORS[globalSelectedRes.status]}`}>
-                      {globalSelectedRes.status}
-                    </span>
-                  </div>
-                  
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <p className="text-xs md:text-sm text-slate-500 mb-1">고객명</p>
-                      <p className="font-medium text-slate-800">{globalSelectedRes.customer}</p>
-                    </div>
-                    <div>
-                      <p className="text-xs md:text-sm text-slate-500 mb-1">연락처</p>
-                      <p className="font-medium text-slate-800">{globalSelectedRes.phone}</p>
-                    </div>
-                    <div className="sm:col-span-2">
-                      <p className="text-xs md:text-sm text-slate-500 mb-1">카테고리</p>
-                      <p className="font-medium text-slate-800">{globalSelectedRes.largeCat} &gt; {globalSelectedRes.mediumCat}</p>
-                    </div>
-                    <div className="sm:col-span-2">
-                      <p className="text-xs md:text-sm text-slate-500 mb-1">예약상품</p>
-                      <p className="font-medium text-slate-800">{globalSelectedRes.item}</p>
-                    </div>
-                    <div>
-                      <p className="text-xs md:text-sm text-slate-500 mb-1">예약일자</p>
-                      <p className="font-medium text-slate-800">{globalSelectedRes.date}</p>
-                    </div>
-                    <div>
-                      <p className="text-xs md:text-sm text-slate-500 mb-1">결제금액</p>
-                      <p className="font-medium text-slate-800">₩{globalSelectedRes.amount.toLocaleString()}</p>
-                    </div>
-                  </div>
+                  ) : (
+                    <>
+                      <div className="flex justify-between items-center border-b border-slate-100 pb-4">
+                        <div>
+                          <p className="text-xs md:text-sm text-slate-500">예약번호</p>
+                          <p className="font-semibold text-slate-800">{globalSelectedRes.id}</p>
+                        </div>
+                        <span className={`px-3 py-1 rounded-full text-xs font-bold border ${STATUS_COLORS[globalSelectedRes.status]}`}>
+                          {globalSelectedRes.status}
+                        </span>
+                      </div>
+                      
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                          <p className="text-xs md:text-sm text-slate-500 mb-1">고객명</p>
+                          <p className="font-medium text-slate-800">{globalSelectedRes.customer}</p>
+                        </div>
+                        <div>
+                          <p className="text-xs md:text-sm text-slate-500 mb-1">연락처</p>
+                          <p className="font-medium text-slate-800">{globalSelectedRes.phone}</p>
+                        </div>
+                        <div className="sm:col-span-2">
+                          <p className="text-xs md:text-sm text-slate-500 mb-1">카테고리</p>
+                          <p className="font-medium text-slate-800">{globalSelectedRes.largeCat} &gt; {globalSelectedRes.mediumCat}</p>
+                        </div>
+                        <div className="sm:col-span-2">
+                          <p className="text-xs md:text-sm text-slate-500 mb-1">예약상품</p>
+                          <p className="font-medium text-slate-800">{globalSelectedRes.item}</p>
+                        </div>
+                        <div>
+                          <p className="text-xs md:text-sm text-slate-500 mb-1">예약일자</p>
+                          <p className="font-medium text-slate-800">{globalSelectedRes.date}</p>
+                        </div>
+                        <div>
+                          <p className="text-xs md:text-sm text-slate-500 mb-1">결제금액</p>
+                          <p className="font-medium text-slate-800">₩{globalSelectedRes.amount.toLocaleString()}</p>
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </div>
                 
-                <div className="sticky bottom-0 px-5 py-4 bg-slate-50 border-t border-slate-100 flex justify-end">
-                  <button 
-                    onClick={() => setGlobalSelectedRes(null)} 
-                    className="px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-200 rounded-lg transition-colors w-full sm:w-auto"
-                  >
-                    닫기
-                  </button>
+                <div className="sticky bottom-0 px-5 py-4 bg-slate-50 border-t border-slate-100 flex justify-end gap-2">
+                  {globalIsEditMode ? (
+                    <>
+                      <button onClick={() => setGlobalIsEditMode(false)} className="px-4 py-2 text-xs md:text-sm font-medium text-slate-600 hover:bg-slate-200 rounded-lg transition-colors w-full sm:w-auto">
+                        취소
+                      </button>
+                      <button onClick={() => {
+                        setReservations(prev => prev.map(r => r.id === globalEditForm.id ? globalEditForm : r));
+                        setGlobalSelectedRes(globalEditForm);
+                        setGlobalIsEditMode(false);
+                      }} className="px-4 py-2 text-xs md:text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors w-full sm:w-auto">
+                        저장 완료
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <button onClick={closeGlobalResModal} className="px-4 py-2 text-xs md:text-sm font-medium text-slate-600 hover:bg-slate-200 rounded-lg transition-colors w-full sm:w-auto">
+                        닫기
+                      </button>
+                      <button onClick={() => { setGlobalEditForm(globalSelectedRes); setGlobalIsEditMode(true); }} className="px-4 py-2 text-xs md:text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors w-full sm:w-auto">
+                        수정
+                      </button>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
@@ -314,7 +462,7 @@
 
     // --- [Sub Views] ---
 
-    function DashboardView({ reservations, onSelectReservation }) {
+    function DashboardView({ reservations, onSelectReservation, onSelectDate, statColors }) {
       const [currentDate, setCurrentDate] = useState(new Date(2026, 1, 1)); 
 
       const year = currentDate.getFullYear();
@@ -348,7 +496,15 @@
         const dayReservations = reservations.filter(r => r.date === dateStr);
         
         return (
-          <div key={day} className="bg-white border border-slate-100 p-1 md:p-2 min-h-[80px] md:min-h-[120px] flex flex-col hover:bg-slate-50 transition-colors group cursor-pointer overflow-hidden">
+          <div 
+            key={day} 
+            onClick={() => {
+              if (dayReservations.length > 0) {
+                onSelectDate({ date: dateStr, reservations: dayReservations });
+              }
+            }}
+            className="bg-white border border-slate-100 p-1 md:p-2 min-h-[80px] md:min-h-[120px] flex flex-col hover:bg-slate-50 transition-colors group cursor-pointer overflow-hidden"
+          >
             <div className="flex justify-between items-center mb-1">
               <span className={`text-xs md:text-sm font-medium ${
                 (index % 7 === 0) ? 'text-red-500' : (index % 7 === 6) ? 'text-blue-500' : 'text-slate-700'
@@ -379,10 +535,10 @@
         <div className="space-y-4 md:space-y-6 h-full flex flex-col">
           {/* Stat Cards */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 shrink-0">
-            <StatCard title="대기" value={stats.pending} icon={<Icon name="Clock" size={18} className="text-yellow-500" />} trend="+12%" />
-            <StatCard title="진행/확정" value={stats.confirmed} icon={<Icon name="PlayCircle" size={18} className="text-blue-500" />} trend="+5%" />
-            <StatCard title="완료" value={stats.completed} icon={<Icon name="CheckCircle2" size={18} className="text-green-500" />} trend="-2%" />
-            <StatCard title="매출액" value={`₩${stats.revenue.toLocaleString()}`} icon={<Icon name="TrendingUp" size={18} className="text-purple-500" />} trend="+18%" />
+            <StatCard title="대기" value={stats.pending} icon={<Icon name="Clock" size={18} style={{ color: statColors.pending }} />} trend="+12%" />
+            <StatCard title="진행/확정" value={stats.confirmed} icon={<Icon name="PlayCircle" size={18} style={{ color: statColors.confirmed }} />} trend="+5%" />
+            <StatCard title="완료" value={stats.completed} icon={<Icon name="CheckCircle2" size={18} style={{ color: statColors.completed }} />} trend="-2%" />
+            <StatCard title="매출액" value={`₩${stats.revenue.toLocaleString()}`} icon={<Icon name="TrendingUp" size={18} style={{ color: statColors.revenue }} />} trend="+18%" />
           </div>
 
           {/* Calendar Area */}
@@ -420,10 +576,10 @@
         </div>
       );
     }
-
-    function ReservationsView({ reservations, setReservations }) {
+    function ReservationsView({ reservations, setReservations, categoryMap }) {
       const [filterStatus, setFilterStatus] = useState('전체');
       const [filterCategory, setFilterCategory] = useState('전체');
+      const [editingRes, setEditingRes] = useState(null); // 수정 모달 상태
 
       const handleStatusChange = (id, newStatus) => {
         setReservations(prev => prev.map(res => res.id === id ? { ...res, status: newStatus } : res));
@@ -491,7 +647,7 @@
                   <th className="px-4 md:px-6 py-3 md:py-4 font-medium">고객명 (연락처)</th>
                   <th className="px-4 md:px-6 py-3 md:py-4 font-medium">예약일자</th>
                   <th className="px-4 md:px-6 py-3 md:py-4 font-medium">결제금액</th>
-                  <th className="px-4 md:px-6 py-3 md:py-4 font-medium text-center">상태 관리</th>
+                  <th className="px-4 md:px-6 py-3 md:py-4 font-medium text-center">상태 / 관리</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
@@ -507,17 +663,26 @@
                     <td className="px-4 md:px-6 py-3 md:py-4 text-slate-600">{res.date}</td>
                     <td className="px-4 md:px-6 py-3 md:py-4 font-medium">₩{res.amount.toLocaleString()}</td>
                     <td className="px-4 md:px-6 py-3 md:py-4 text-center">
-                      <select
-                        value={res.status}
-                        onChange={(e) => handleStatusChange(res.id, e.target.value)}
-                        className={`text-xs md:text-sm border rounded-lg px-2 md:px-3 py-1 md:py-1.5 font-medium outline-none focus:ring-2 focus:ring-blue-500/20 cursor-pointer ${STATUS_COLORS[res.status]}`}
-                      >
-                        <option value="대기">대기</option>
-                        <option value="확정">확정</option>
-                        <option value="진행">진행</option>
-                        <option value="완료">완료</option>
-                        <option value="취소">취소</option>
-                      </select>
+                      <div className="flex items-center justify-center gap-1 md:gap-2">
+                        <select
+                          value={res.status}
+                          onChange={(e) => handleStatusChange(res.id, e.target.value)}
+                          className={`text-xs md:text-sm border rounded-lg px-2 md:px-3 py-1 md:py-1.5 font-medium outline-none focus:ring-2 focus:ring-blue-500/20 cursor-pointer ${STATUS_COLORS[res.status]}`}
+                        >
+                          <option value="대기">대기</option>
+                          <option value="확정">확정</option>
+                          <option value="진행">진행</option>
+                          <option value="완료">완료</option>
+                          <option value="취소">취소</option>
+                        </select>
+                        <button 
+                          onClick={() => setEditingRes({ ...res })}
+                          className="text-slate-400 hover:text-blue-600 transition-colors p-1 rounded hover:bg-slate-100"
+                          title="예약 수정"
+                        >
+                          <Icon name="Edit2" size={16} />
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))}
@@ -531,6 +696,137 @@
               </tbody>
             </table>
           </div>
+
+          {/* Edit Reservation Modal */}
+          {editingRes && (
+            <div className="fixed inset-0 bg-slate-900/50 flex items-center justify-center z-[60] p-4">
+              <div className="bg-white rounded-xl shadow-xl w-full max-w-lg max-h-[90dvh] overflow-y-auto animate-in fade-in zoom-in duration-200">
+                <div className="sticky top-0 px-5 py-4 border-b border-slate-100 flex justify-between items-center bg-slate-50 z-10">
+                  <h3 className="font-bold text-lg">예약 내역 수정</h3>
+                  <button onClick={() => setEditingRes(null)} className="text-slate-400 hover:text-slate-700">
+                    <Icon name="XCircle" size={24} />
+                  </button>
+                </div>
+                
+                <div className="p-5 space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs md:text-sm font-medium text-slate-700 mb-1">고객명</label>
+                      <input 
+                        type="text" 
+                        value={editingRes.customer}
+                        onChange={(e) => setEditingRes({...editingRes, customer: e.target.value})}
+                        className="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs md:text-sm focus:ring-2 focus:ring-blue-500 outline-none" 
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs md:text-sm font-medium text-slate-700 mb-1">연락처</label>
+                      <input 
+                        type="text" 
+                        value={editingRes.phone}
+                        onChange={(e) => setEditingRes({...editingRes, phone: e.target.value})}
+                        className="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs md:text-sm focus:ring-2 focus:ring-blue-500 outline-none" 
+                      />
+                    </div>
+                    
+                    <div>
+                      <label className="block text-xs md:text-sm font-medium text-slate-700 mb-1">대카테고리</label>
+                      <select 
+                        value={editingRes.largeCat}
+                        onChange={(e) => {
+                          const newLargeCat = e.target.value;
+                          setEditingRes({
+                            ...editingRes, 
+                            largeCat: newLargeCat,
+                            mediumCat: categoryMap[newLargeCat][0] || '' // 대분류 변경 시 중분류 초기화
+                          });
+                        }}
+                        className="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs md:text-sm outline-none focus:ring-2 focus:ring-blue-500"
+                      >
+                        {LARGE_CATEGORIES.map(cat => (
+                          <option key={cat} value={cat}>{cat}</option>
+                        ))}
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-xs md:text-sm font-medium text-slate-700 mb-1">중카테고리 (기업명)</label>
+                      <select 
+                        value={editingRes.mediumCat}
+                        onChange={(e) => setEditingRes({...editingRes, mediumCat: e.target.value})}
+                        className="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs md:text-sm outline-none focus:ring-2 focus:ring-blue-500"
+                      >
+                        {(categoryMap[editingRes.largeCat] || []).map(cat => (
+                          <option key={cat} value={cat}>{cat}</option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div className="sm:col-span-2">
+                      <label className="block text-xs md:text-sm font-medium text-slate-700 mb-1">예약상품</label>
+                      <input 
+                        type="text" 
+                        value={editingRes.item}
+                        onChange={(e) => setEditingRes({...editingRes, item: e.target.value})}
+                        className="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs md:text-sm focus:ring-2 focus:ring-blue-500 outline-none" 
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs md:text-sm font-medium text-slate-700 mb-1">예약일자</label>
+                      <input 
+                        type="date" 
+                        value={editingRes.date}
+                        onChange={(e) => setEditingRes({...editingRes, date: e.target.value})}
+                        className="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs md:text-sm focus:ring-2 focus:ring-blue-500 outline-none" 
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs md:text-sm font-medium text-slate-700 mb-1">결제금액 (₩)</label>
+                      <input 
+                        type="number" 
+                        value={editingRes.amount}
+                        onChange={(e) => setEditingRes({...editingRes, amount: parseInt(e.target.value) || 0})}
+                        className="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs md:text-sm focus:ring-2 focus:ring-blue-500 outline-none" 
+                      />
+                    </div>
+                    
+                    <div className="sm:col-span-2">
+                      <label className="block text-xs md:text-sm font-medium text-slate-700 mb-1">예약 상태</label>
+                      <select 
+                        value={editingRes.status}
+                        onChange={(e) => setEditingRes({...editingRes, status: e.target.value})}
+                        className={`w-full border rounded-lg px-3 py-2 text-xs md:text-sm font-medium outline-none focus:ring-2 focus:ring-blue-500 ${STATUS_COLORS[editingRes.status]}`}
+                      >
+                        <option value="대기">대기</option>
+                        <option value="확정">확정</option>
+                        <option value="진행">진행</option>
+                        <option value="완료">완료</option>
+                        <option value="취소">취소</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="sticky bottom-0 px-5 py-4 bg-slate-50 border-t border-slate-100 flex justify-end gap-2">
+                  <button 
+                    onClick={() => setEditingRes(null)} 
+                    className="px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-200 rounded-lg transition-colors w-full sm:w-auto"
+                  >
+                    취소
+                  </button>
+                  <button 
+                    onClick={() => {
+                      setReservations(prev => prev.map(r => r.id === editingRes.id ? editingRes : r));
+                      setEditingRes(null);
+                    }} 
+                    className="px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors w-full sm:w-auto"
+                  >
+                    저장 완료
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       );
     }
@@ -540,6 +836,14 @@
       const [selectedMediumCat, setSelectedMediumCat] = useState('전체');
       const [isModalOpen, setIsModalOpen] = useState(false);
       const [editingCat, setEditingCat] = useState({ oldName: '', newName: '' });
+
+      // 중분류 추가 및 삭제용 상태
+      const [isAddingCat, setIsAddingCat] = useState(false);
+      const [newCatName, setNewCatName] = useState('');
+      const [deletingCat, setDeletingCat] = useState(null);
+
+      // 파트너 수정용 상태
+      const [editingPartner, setEditingPartner] = useState(null);
 
       const mediumCategories = categoryMap[selectedLargeCat];
 
@@ -559,9 +863,36 @@
         setEditingCat({ oldName: '', newName: '' });
       };
 
+      const handleAddCategory = () => {
+        if (!newCatName.trim() || mediumCategories.includes(newCatName.trim())) {
+          setIsAddingCat(false);
+          setNewCatName('');
+          return;
+        }
+        setCategoryMap(prev => ({
+          ...prev,
+          [selectedLargeCat]: [...prev[selectedLargeCat], newCatName.trim()]
+        }));
+        setIsAddingCat(false);
+        setNewCatName('');
+      };
+
+      const handleDeleteCategory = (catToDelete) => {
+        setCategoryMap(prev => ({
+          ...prev,
+          [selectedLargeCat]: prev[selectedLargeCat].filter(c => c !== catToDelete)
+        }));
+        if (selectedMediumCat === catToDelete) {
+          setSelectedMediumCat('전체');
+        }
+        setDeletingCat(null);
+      };
+
       const handleLargeCatChange = (cat) => {
         setSelectedLargeCat(cat);
         setSelectedMediumCat('전체');
+        setIsAddingCat(false);
+        setNewCatName('');
       };
 
       const filteredPartners = partners.filter(p => {
@@ -593,7 +924,7 @@
           <div className="flex flex-col lg:flex-row gap-4 md:gap-6 flex-1 min-h-0">
             {/* Sidebar for Medium Categories */}
             <div className="w-full lg:w-64 shrink-0 bg-white rounded-xl border border-slate-200 shadow-sm p-3 md:p-4 flex flex-col h-48 lg:h-auto">
-              <h3 className="text-xs md:text-sm font-bold text-slate-800 mb-2 md:mb-4 px-2">기업명(중분류) 필터</h3>
+              <h3 className="text-xs md:text-sm font-bold text-slate-800 mb-2 md:mb-4 px-2">담당자(중분류) 필터</h3>
               <div className="space-y-1 overflow-y-auto flex-1 pr-1">
                 <button
                   onClick={() => setSelectedMediumCat('전체')}
@@ -631,8 +962,16 @@
                           <div 
                             onClick={(e) => { e.stopPropagation(); setEditingCat({ oldName: mCat, newName: mCat }); }}
                             className="lg:opacity-0 lg:group-hover:opacity-100 text-slate-400 hover:text-blue-600 transition-opacity p-1 rounded hover:bg-slate-200 cursor-pointer flex items-center justify-center"
+                            title="이름 수정"
                           >
                             <Icon name="Edit2" size={12} />
+                          </div>
+                          <div 
+                            onClick={(e) => { e.stopPropagation(); setDeletingCat(mCat); }}
+                            className="lg:opacity-0 lg:group-hover:opacity-100 text-slate-400 hover:text-red-600 transition-opacity p-1 rounded hover:bg-slate-200 cursor-pointer flex items-center justify-center"
+                            title="삭제"
+                          >
+                            <Icon name="Trash2" size={12} />
                           </div>
                           <span className="text-[10px] bg-slate-100 px-1.5 py-0.5 rounded-full text-slate-500">
                             {partners.filter(p => p.largeCat === selectedLargeCat && p.mediumCat === mCat).length}
@@ -644,9 +983,27 @@
                 ))}
               </div>
               <div className="mt-2 md:mt-auto pt-2 md:pt-4 border-t border-slate-100">
-                <button className="w-full py-1.5 md:py-2 text-xs md:text-sm text-slate-500 border border-dashed border-slate-300 rounded-lg hover:border-blue-400 hover:text-blue-600 transition-colors flex items-center justify-center gap-1">
-                  <Icon name="Plus" size={14} /> 기업(중분류) 추가
-                </button>
+                {isAddingCat ? (
+                  <div className="flex items-center gap-2 px-2 py-1.5 bg-slate-50 rounded-lg border border-blue-200">
+                    <input 
+                      type="text" 
+                      value={newCatName}
+                      onChange={(e) => setNewCatName(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') handleAddCategory();
+                        if (e.key === 'Escape') { setIsAddingCat(false); setNewCatName(''); }
+                      }}
+                      autoFocus
+                      placeholder="새 담당자 입력..."
+                      className="w-full bg-transparent px-1.5 py-0.5 text-xs outline-none"
+                    />
+                    <button onClick={handleAddCategory} className="text-blue-600 text-xs font-bold shrink-0 hover:text-blue-700">추가</button>
+                  </div>
+                ) : (
+                  <button onClick={() => setIsAddingCat(true)} className="w-full py-1.5 md:py-2 text-xs md:text-sm text-slate-500 border border-dashed border-slate-300 rounded-lg hover:border-blue-400 hover:text-blue-600 transition-colors flex items-center justify-center gap-1">
+                    <Icon name="Plus" size={14} /> 담당자(중분류) 추가
+                  </button>
+                )}
               </div>
             </div>
 
@@ -670,11 +1027,11 @@
                   <thead className="bg-slate-50 text-slate-600 border-b border-slate-200 sticky top-0 z-10">
                     <tr>
                       <th className="px-4 md:px-6 py-3 md:py-4 font-medium">파트너 ID</th>
-                      <th className="px-4 md:px-6 py-3 md:py-4 font-medium">지점/담당자</th>
-                      <th className="px-4 md:px-6 py-3 md:py-4 font-medium">소속 기업</th>
+                      <th className="px-4 md:px-6 py-3 md:py-4 font-medium">지점</th>
+                      <th className="px-4 md:px-6 py-3 md:py-4 font-medium">담당자 (중분류)</th>
                       <th className="px-4 md:px-6 py-3 md:py-4 font-medium">연락처</th>
                       <th className="px-4 md:px-6 py-3 md:py-4 font-medium">상태</th>
-                      <th className="px-4 md:px-6 py-3 md:py-4 font-medium text-right">관리</th>
+                      <th className="px-4 md:px-6 py-3 md:py-4 font-medium text-center">관리</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100">
@@ -691,9 +1048,13 @@
                             {ptn.status}
                           </span>
                         </td>
-                        <td className="px-4 md:px-6 py-3 md:py-4 text-right">
-                          <button className="text-slate-400 hover:text-blue-600 transition-colors p-1">
-                            <Icon name="MoreVertical" size={16} />
+                        <td className="px-4 md:px-6 py-3 md:py-4 text-center">
+                          <button 
+                            onClick={() => setEditingPartner({ ...ptn })}
+                            className="text-slate-400 hover:text-blue-600 transition-colors p-1 rounded hover:bg-slate-100"
+                            title="수정"
+                          >
+                            <Icon name="Edit2" size={16} />
                           </button>
                         </td>
                       </tr>
@@ -726,8 +1087,8 @@
                 </div>
                 <div className="p-5 space-y-4">
                   <div>
-                    <label className="block text-xs md:text-sm font-medium text-slate-700 mb-1">파트너(지점/담당자)명</label>
-                    <input type="text" className="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs md:text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" placeholder="이름 또는 지점명을 입력하세요" />
+                    <label className="block text-xs md:text-sm font-medium text-slate-700 mb-1">지점명</label>
+                    <input type="text" className="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs md:text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" placeholder="지점명을 입력하세요" />
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
@@ -737,7 +1098,7 @@
                       </select>
                     </div>
                     <div>
-                      <label className="block text-xs md:text-sm font-medium text-slate-700 mb-1">소속 기업(중분류)</label>
+                      <label className="block text-xs md:text-sm font-medium text-slate-700 mb-1">담당자 (중분류)</label>
                       <select className="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs md:text-sm outline-none focus:ring-2 focus:ring-blue-500">
                         {mediumCategories.map(cat => (
                           <option key={cat} value={cat}>{cat}</option>
@@ -772,6 +1133,240 @@
               </div>
             </div>
           )}
+
+          {/* Edit Partner Modal */}
+          {editingPartner && (
+            <div className="fixed inset-0 bg-slate-900/50 flex items-center justify-center z-[60] p-4">
+              <div className="bg-white rounded-xl shadow-xl w-full max-w-md max-h-[90dvh] overflow-y-auto animate-in fade-in zoom-in duration-200">
+                <div className="sticky top-0 px-5 py-4 border-b border-slate-100 flex justify-between items-center bg-slate-50 z-10">
+                  <h3 className="font-bold text-lg">파트너 정보 수정</h3>
+                  <button onClick={() => setEditingPartner(null)} className="text-slate-400 hover:text-slate-700">
+                    <Icon name="XCircle" size={24} />
+                  </button>
+                </div>
+                <div className="p-5 space-y-4">
+                  <div>
+                    <label className="block text-xs md:text-sm font-medium text-slate-700 mb-1">지점명</label>
+                    <input 
+                      type="text" 
+                      value={editingPartner.name}
+                      onChange={(e) => setEditingPartner({...editingPartner, name: e.target.value})}
+                      className="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs md:text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" 
+                    />
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs md:text-sm font-medium text-slate-700 mb-1">대카테고리</label>
+                      <select 
+                        value={editingPartner.largeCat}
+                        onChange={(e) => {
+                          const newLargeCat = e.target.value;
+                          setEditingPartner({
+                            ...editingPartner, 
+                            largeCat: newLargeCat,
+                            mediumCat: categoryMap[newLargeCat][0] || ''
+                          });
+                        }}
+                        className="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs md:text-sm outline-none focus:ring-2 focus:ring-blue-500"
+                      >
+                        {LARGE_CATEGORIES.map(cat => (
+                          <option key={cat} value={cat}>{cat}</option>
+                        ))}
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-xs md:text-sm font-medium text-slate-700 mb-1">담당자 (중분류)</label>
+                      <select 
+                        value={editingPartner.mediumCat}
+                        onChange={(e) => setEditingPartner({...editingPartner, mediumCat: e.target.value})}
+                        className="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs md:text-sm outline-none focus:ring-2 focus:ring-blue-500"
+                      >
+                        {(categoryMap[editingPartner.largeCat] || []).map(cat => (
+                          <option key={cat} value={cat}>{cat}</option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-xs md:text-sm font-medium text-slate-700 mb-1">연락처</label>
+                    <input 
+                      type="text" 
+                      value={editingPartner.contact || ''}
+                      onChange={(e) => setEditingPartner({...editingPartner, contact: e.target.value})}
+                      className="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs md:text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" 
+                    />
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs md:text-sm font-medium text-slate-700 mb-1">상태</label>
+                      <select 
+                        value={editingPartner.status}
+                        onChange={(e) => setEditingPartner({...editingPartner, status: e.target.value})}
+                        className={`w-full border rounded-lg px-3 py-2 text-xs md:text-sm font-medium outline-none focus:ring-2 focus:ring-blue-500 ${
+                          editingPartner.status === '활성' ? 'bg-green-50 text-green-700 border-green-200' : 'bg-slate-100 text-slate-600 border-slate-200'
+                        }`}
+                      >
+                        <option value="활성">활성</option>
+                        <option value="휴면">휴면</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div className="sticky bottom-0 px-5 py-4 bg-slate-50 border-t border-slate-100 flex justify-end gap-2">
+                  <button onClick={() => setEditingPartner(null)} className="px-4 py-2 text-xs md:text-sm font-medium text-slate-600 hover:bg-slate-200 rounded-lg transition-colors">
+                    취소
+                  </button>
+                  <button 
+                    onClick={() => {
+                      setPartners(prev => prev.map(p => p.id === editingPartner.id ? editingPartner : p));
+                      setEditingPartner(null);
+                    }} 
+                    className="px-4 py-2 text-xs md:text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors"
+                  >
+                    저장 완료
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Delete Category Confirm Modal */}
+          {deletingCat && (
+            <div className="fixed inset-0 bg-slate-900/50 flex items-center justify-center z-[70] p-4">
+              <div className="bg-white rounded-xl shadow-xl w-full max-w-sm overflow-hidden animate-in fade-in zoom-in duration-200">
+                <div className="p-6 text-center">
+                  <div className="w-12 h-12 rounded-full bg-red-100 text-red-600 flex items-center justify-center mx-auto mb-4">
+                    <Icon name="Trash2" size={24} />
+                  </div>
+                  <h3 className="font-bold text-lg text-slate-800 mb-2">카테고리 삭제</h3>
+                  <p className="text-sm text-slate-500 mb-6">
+                    정말로 <strong className="text-slate-800">{deletingCat}</strong> 카테고리를 삭제하시겠습니까?<br/>
+                  </p>
+                  <div className="flex gap-2 w-full">
+                    <button onClick={() => setDeletingCat(null)} className="flex-1 py-2 text-sm font-medium text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors">취소</button>
+                    <button onClick={() => handleDeleteCategory(deletingCat)} className="flex-1 py-2 text-sm font-medium text-white bg-red-600 hover:bg-red-700 rounded-lg transition-colors">삭제</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    function SettingsView({ statColors, setStatColors }) {
+      // 시스템 설정 내에서만 사용하는 임시 색상 상태
+      const [localColors, setLocalColors] = useState(statColors);
+
+      const handleColorChange = (key, value) => {
+        setLocalColors(prev => ({ ...prev, [key]: value }));
+      };
+
+      // 적용 버튼 클릭 시 메인 대시보드 상태로 업데이트
+      const handleApply = () => {
+        setStatColors(localColors);
+        // iframe 내부에서 alert 대신 모달을 띄울 수도 있으나, 간단한 확인을 위해 커스텀 알림 처리 권장
+        // Canvas 상에서 alert() 사용을 최소화하기 위해 간단한 텍스트 피드백으로 대체합니다.
+        const btn = document.getElementById('applyBtn');
+        if(btn) {
+          const originalText = btn.innerText;
+          btn.innerText = '적용 완료!';
+          btn.classList.add('bg-green-600');
+          setTimeout(() => {
+            btn.innerText = originalText;
+            btn.classList.remove('bg-green-600');
+          }, 1500);
+        }
+      };
+
+      return (
+        <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-4 md:p-6 h-full overflow-y-auto flex flex-col">
+          <h3 className="text-lg font-bold text-slate-800 mb-6 shrink-0">시스템 설정</h3>
+          
+          <div className="max-w-2xl flex-1">
+            <h4 className="font-semibold text-slate-700 mb-2 border-b pb-2">대시보드 통계 카드 색상 설정</h4>
+            <p className="text-xs text-slate-500 mb-6">아래의 컬러 피커를 클릭하여 색상을 지정한 후, <strong>[변경사항 적용]</strong> 버튼을 누르면 대시보드에 반영됩니다.</p>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+              <div className="flex items-center justify-between p-4 border border-slate-100 rounded-lg bg-slate-50 hover:bg-slate-100 transition-colors">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-white rounded shadow-sm">
+                    <Icon name="Clock" size={20} style={{ color: localColors.pending }} />
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-slate-800">대기</p>
+                  </div>
+                </div>
+                <input 
+                  type="color" 
+                  value={localColors.pending}
+                  onChange={(e) => handleColorChange('pending', e.target.value)}
+                  className="w-10 h-10 rounded cursor-pointer border-0 p-0 bg-transparent"
+                />
+              </div>
+
+              <div className="flex items-center justify-between p-4 border border-slate-100 rounded-lg bg-slate-50 hover:bg-slate-100 transition-colors">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-white rounded shadow-sm">
+                    <Icon name="PlayCircle" size={20} style={{ color: localColors.confirmed }} />
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-slate-800">진행/확정</p>
+                  </div>
+                </div>
+                <input 
+                  type="color" 
+                  value={localColors.confirmed}
+                  onChange={(e) => handleColorChange('confirmed', e.target.value)}
+                  className="w-10 h-10 rounded cursor-pointer border-0 p-0 bg-transparent"
+                />
+              </div>
+
+              <div className="flex items-center justify-between p-4 border border-slate-100 rounded-lg bg-slate-50 hover:bg-slate-100 transition-colors">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-white rounded shadow-sm">
+                    <Icon name="CheckCircle2" size={20} style={{ color: localColors.completed }} />
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-slate-800">완료</p>
+                  </div>
+                </div>
+                <input 
+                  type="color" 
+                  value={localColors.completed}
+                  onChange={(e) => handleColorChange('completed', e.target.value)}
+                  className="w-10 h-10 rounded cursor-pointer border-0 p-0 bg-transparent"
+                />
+              </div>
+
+              <div className="flex items-center justify-between p-4 border border-slate-100 rounded-lg bg-slate-50 hover:bg-slate-100 transition-colors">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-white rounded shadow-sm">
+                    <Icon name="TrendingUp" size={20} style={{ color: localColors.revenue }} />
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-slate-800">매출액</p>
+                  </div>
+                </div>
+                <input 
+                  type="color" 
+                  value={localColors.revenue}
+                  onChange={(e) => handleColorChange('revenue', e.target.value)}
+                  className="w-10 h-10 rounded cursor-pointer border-0 p-0 bg-transparent"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-6 pt-4 border-t border-slate-100 flex justify-end shrink-0">
+            <button 
+              id="applyBtn"
+              onClick={handleApply}
+              className="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold rounded-lg shadow-sm transition-colors w-full sm:w-auto"
+            >
+              변경사항 적용
+            </button>
+          </div>
         </div>
       );
     }
